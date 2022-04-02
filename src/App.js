@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useGetPostApiQuery } from "./Redux/PostApi";
 
-function App() {
+const App = () => {
+  const postInfo = useGetPostApiQuery();
+  const data = postInfo.data;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {data.map((data) => (
+        <div>
+          <h3>{data.id}</h3>
+          <p>{data.title}</p>
+        </div>
+      ))}
     </div>
   );
-}
+};
 
 export default App;
